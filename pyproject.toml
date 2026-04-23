@@ -3,11 +3,25 @@ name = "mx"
 dynamic = ["version"]
 description = 'The Microsoft MX floating point library'
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
-    "torch==2.2.0",
-    "torchvision==0.16",
-    "torchaudio==2.1.0"
+    "torch==2.6.0",
+    "torchvision>=0.16",
+    "torchaudio>=2.1.0",
+    "einops>=0.8.1",
+    "setuptools>=75.3.4,<81",
+    "packaging>=26.0",
+    "wandb>=0.24.2",
+    "accelerate>=1.0.1",
+    "numpy<2",
+    "ninja>=1.13.0",
+    "tqdm>=4.67.3",
+    "transformers>=4.46.3",
+    "datasets>=3.1.0",
+    "scipy>=1.13.1",
+    "torchsummary>=1.5.1",
+    "scikit-learn>=1.6.1",
+    "matplotlib>=3.9.4",
 ]
 license = { file = "LICENSE" }
 keywords = ["mx", "floating point", "math", "mathematics", "machine learning", "deep learning", "artificial intelligence", "ai", "ml", "dl", "torch", "torchvision", "torchaudio"]
@@ -36,6 +50,11 @@ include = [
 [tool.hatch.version]
 source = "vcs"
 raw-options = { root = "." }
+
+[tool.uv.workspace]
+members = [
+    "microxcaling",
+]
 
 [tool.hatch.build.hooks.vcs]
 version-file = "_version.py"

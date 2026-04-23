@@ -25,6 +25,9 @@ torch_addmm = torch.addmm
 
 def tracer_decorator(func, mx_specs):
     def wrapper(*args, **kwargs):
+        # PyTorch sometimes passes internal kwargs like _stacklevel
+        # that our custom ops don't accept.
+        kwargs.pop('_stacklevel', None)
         if 'dtype' in kwargs:
             dtype = kwargs.pop('dtype')
         else:
